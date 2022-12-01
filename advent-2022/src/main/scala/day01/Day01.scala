@@ -4,7 +4,7 @@ import parser.TypeParser.*
 object Day01:
 
   def sums(lines: Seq[String]): List[Long] = lines match
-    case Nil => Nil
+    case Nil       => Nil
     case remaining =>
       val (xs, n) = ksum(remaining)
       n :: sums(xs)
@@ -12,9 +12,9 @@ object Day01:
   def ksum(input: Seq[String]): (Seq[String], Long) = input match
     case Nil      => (Nil, 0)
     case "" :: xs => (xs, 0)
-    case n :: xs =>
+    case n :: xs  =>
       val (rest, runningSum) = ksum(xs)
-      (rest, n.toInt + runningSum)
+      (rest, n.toLong + runningSum)
 
   def part1(input: Seq[String]): Long = sums(input).max
 
@@ -22,4 +22,4 @@ object Day01:
 
   @main def dayO1Part1: Unit = println(part1("day01/input1".as[Seq[String]]))
 
-  @main def dayO1Part2: Unit = println("day01/input2".as[Seq[String]])
+  @main def dayO1Part2: Unit = println(part2("day01/input2".as[Seq[String]]))
