@@ -25,3 +25,6 @@ object TypeParser:
   given TypeParser[String, Int] with
     override def parse(input: String): Int = input.toInt
 
+  given tupleParser[Left, Right](using TypeParser[String, Left], TypeParser[String, Right]): TypeParser[String, (Left, Right)] with
+    def parse(input: String): (Left, Right) = input match
+      case s"$left $right" => (left.as[Left], right.as[Right])
