@@ -13,7 +13,7 @@ object Day05:
     .takeWhile(_.nonEmpty)
     .transpose
     .filter(_.exists(_.isDigit))
-    .map(s => (s.last.toString.toInt -> s.dropRight(1).filter(_ != ' ')))
+    .map(s => (s.last.toString.toInt -> s.init.filter(_ != ' ')))
     .toMap
 
   def parseMove(input: Seq[String]) = input.dropWhile(_.nonEmpty).drop(1).map(_.as[Move])
